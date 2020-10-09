@@ -46,7 +46,16 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        // Modul 1 - take snapshot from user webcam
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/modul-1.php'));
+
+        // Modul 2 - Scan & print barcode
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/modul-2.php'));
+        
     }
 
     /**

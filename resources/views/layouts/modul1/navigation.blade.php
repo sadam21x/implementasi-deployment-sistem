@@ -7,14 +7,6 @@
     </div>
     <div class="navigation-menu-body">
         <ul>
-            {{-- <li>
-                <a href="{{ url('/sales-a') }}" id="dashboard-menu">
-                    <span class="nav-link-icon">
-                        <i class="fas fa-tachometer-alt"></i>
-                    </span>
-                    <span>Dashboard</span>
-                </a>
-            </li> --}}
             <li>
                 <a href="#" id="customer-menu">
                     <span class="nav-link-icon">
@@ -25,24 +17,31 @@
 
                 <ul>
                     <li>
-                        <a href="{{ url('/modul-1/customer') }}">Data Customer</a>
-
-                        {{-- <ul>
-                            <li>
-                                <a href="{{ url('/modul-1/customer/tambah-1') }}">Tambah Customer 1</a>
-                            </li>
-                            <li>
-                                <a href="{{ url('/modul-1/customer/tambah-2') }}">Tambah Customer 2</a>
-                            </li>
-                        </ul> --}}
+                        <a href="{{ url('/customer') }}">Data Customer</a>
                     </li>
                     <li>
-                        <a href="{{ url('/modul-1/customer/tambah-1') }}">Tambah Customer 1</a>
+                        <a href="{{ url('/customer/tambah-1') }}">Tambah Customer 1</a>
                     </li>
                     <li>
-                        <a href="{{ url('/modul-1/customer/tambah-2') }}">Tambah Customer 2</a>
+                        <a href="{{ url('/customer/tambah-2') }}">Tambah Customer 2</a>
                     </li>
                 </ul>
+            </li>
+            <li>
+                <a href="{{ url('/cetak-label-tnj-108') }}" id="cetak-label-tnj-108-menu">
+                    <span class="nav-link-icon">
+                        <i class="fas fa-paw"></i>
+                    </span>
+                    <span>Cetak label TnJ 108</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('/barcode-scanner') }}" id="barcode-scanner-menu">
+                    <span class="nav-link-icon">
+                        <i class="fas fa-barcode"></i>
+                    </span>
+                    <span>Barcode Scanner</span>
+                </a>
             </li>
         </ul>
     </div>

@@ -23,7 +23,7 @@
 
             <div class="row">
                 <div class="col-md-6 col-sm-12 form-tambah-customer-col">
-                    <form action="{{ url('/modul-1/customer/tambah-1') }}" method="post">
+                    <form action="{{ url('/customer/tambah-1') }}" method="post">
                         @csrf
 
                         <div class="form-group">

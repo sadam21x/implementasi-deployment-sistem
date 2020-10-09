@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\modul1;
 
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -89,7 +88,7 @@ class CustomerController extends Controller
             'foto' => $request->input_foto
         ]);
 
-        return redirect('/modul-1/customer');
+        return redirect('/customer');
     }
 
     public function store_customer2(Request $request)
@@ -125,8 +124,6 @@ class CustomerController extends Controller
             $id_customer = "CUS" . $jumlah_customer;
         }
 
-        // dd($id_customer);
-
         DB::table('customer')->insert([
             'id_customer' => $id_customer,
             'id_kelurahan' => $request->input_kelurahan,
@@ -135,6 +132,6 @@ class CustomerController extends Controller
             'file_path' => $path_foto
         ]);
 
-        return redirect('/modul-1/customer');
+        return redirect('/customer');
     }
 }
