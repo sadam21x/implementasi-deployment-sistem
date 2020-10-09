@@ -8,5 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class BarcodeController extends Controller
 {
-    
+    public function index()
+    {
+        return view('modul2/barcode-scanner');
+    }
 }
