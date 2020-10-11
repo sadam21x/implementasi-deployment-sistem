@@ -20,9 +20,24 @@
                 <div class="video-container">
                     <video id="video"></video>
                 </div>
+                <div class="tombol-container">
+                    <button id="startButton" class="btn btn-sm btn-dark">
+                        <i class="fas fa-play-circle mr-2"></i>
+                        START
+                    </button>
+                    <button id="resetButton" class="btn btn-sm btn-youtube">
+                        <i class="fas fa-undo-alt mr-2"></i>
+                        RESET
+                    </button>
+                </div>
+                <div id="sourceSelectPanel" class="form-group">
+                    <label>Pilih Kamera</label>
+                    <select id="sourceSelect" class="form-control select-camera">
+                    </select>
+                </div>
                 <h5>Hasil scan:</h5>
                 <div class="hasil-scan-container">
-                    <p class="hasil-scan"></p>
+                    <p id="result"></p>
                 </div>
             </div>
 
@@ -34,6 +49,6 @@
 @endsection
 
 @section('extra-script')
-    <script src="https://unpkg.com/@zxing/library@latest"></script>
+    <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
     <script src="{{ asset('/assets/js/barcode-scanner.js') }}"></script>
 @endsection
