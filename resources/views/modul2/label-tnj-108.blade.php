@@ -20,8 +20,8 @@
 <body>
 
     <div class="container">
-        <img src="data:image/png;base64,{{ DNS1D::getBarcodePNG($id_barang, 'C128',3,70,array(1,1,1), true) }}">
-        <h3 class="nama-barang">{{ $nama_barang }}</h3>
+        <img src="data:image/png;base64,{{ DNS1D::getBarcodePNG($id_barang, 'C128',1.5,40,array(1,1,1), true) }}">
+        <h6 class="nama-barang">{{ $nama_barang }}</h6>
     </div>
 
 </body>

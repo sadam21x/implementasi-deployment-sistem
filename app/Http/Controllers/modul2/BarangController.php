@@ -25,8 +25,8 @@ class BarangController extends Controller
         $id_barang = $request->input_id_barang;
         $nama_barang = DB::table('barang')->where('id_barang', $id_barang)->value('nama');
 
-        $paper_width = 448.82; // 38 mm
-        $paper_height = 212.6; // 18 mm
+        $paper_width = 107.716535433; // pt -> 38 mm
+        $paper_height = 51.023622047; // pt -> 18 mm
         $paper_size = array(0, 0, $paper_width, $paper_height);
 
         $pdf = PDF::loadView('modul2/label-tnj-108', compact(

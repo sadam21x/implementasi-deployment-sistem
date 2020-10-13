@@ -14,6 +14,10 @@ body, html {
     transform: translate(-50%, -50%);
 }
 
+.container > img {
+    margin-top: 5px;
+}
+
 .container > .nama-barang {
-    margin-top: 50px;
+    margin-top: 23px;
 }
