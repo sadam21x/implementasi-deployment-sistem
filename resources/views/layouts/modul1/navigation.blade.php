@@ -43,6 +43,14 @@
                     <span>Barcode Scanner</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ url('/kunjungan-toko') }}" id="kunjungan-toko-menu">
+                    <span class="nav-link-icon">
+                        <i class="fas fa-store"></i>
+                    </span>
+                    <span>Kunjungan Toko</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

@@ -56,6 +56,11 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(base_path('routes/modul-2.php'));
         
+        // Modul 3 - Geolocation
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/modul-3.php'));
+        
     }
 
     /**

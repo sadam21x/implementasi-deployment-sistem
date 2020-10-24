@@ -55,6 +55,9 @@
                 {{-- Content --}}
                 @yield('content')
 
+
+                @include('layouts/modul1/session')
+
                 {{-- Footer --}}
                 @include('layouts/footer')
 
