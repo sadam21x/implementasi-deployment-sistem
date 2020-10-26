@@ -9,8 +9,12 @@
 
             <div class="header-logo">
                 <a href="{{ url('/') }}">
-                    <span class="text-white ml-1">
-                        IMPLEMENTASI DAN DEPLOYMENT SISTEM
+                    <span class="text-white">
+                        <i class="fas fa-laptop-code mr-1"></i> 
+                        SADAM
+                    </span>
+                    <span class="text-primary">
+                        TECH
                     </span>
                 </a>
             </div>
@@ -46,14 +50,14 @@
                                 <div class="mb-3 small text-center text-muted">WEB DEVELOPER</div>
                             </div>
                             <div class="list-group">
-                                {{-- <a href="" class="list-group-item" data-toggle="modal" data-target="#modal-profile">
-                                    <i class="fas fa-user mr-1"></i>
-                                    Profil Saya
-                                </a> --}}
-                                <a href="" class="list-group-item text-danger">
+                                <a href="https://github.com/sadam21x/implementasi-deployment-sistem" class="list-group-item" target="_blank">
+                                    <i class="fab fa-github mr-1"></i>
+                                    GitHub
+                                </a>
+                                {{-- <a href="" class="list-group-item text-danger">
                                    <i class="fas fa-sign-out-alt mr-1"></i>
                                    Logout
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
                     </li>

@@ -95,6 +95,24 @@ table td {
     border: 1px solid black;
 }
 
+.header-button-group > * {
+    margin: 5px;
+}
+
+.barcode-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.barcode-container > img {
+    width: 200px;
+}
+
+.hasil-scan-container {
+    height: max-content !important;
+}
+
 @media only screen and (max-width: 600px) {
 
     table {
@@ -112,6 +130,10 @@ table td {
     .modal-foto-wrapper {
         flex-direction: column;
         height: 440px;
+    }
+
+    .barcode-container > img {
+        width: 150px;
     }
 
 }
