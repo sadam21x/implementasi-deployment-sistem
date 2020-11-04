@@ -48,7 +48,7 @@ class KunjunganTokoController extends Controller
     {
         $id_toko =  $_POST['id'];
 
-        $toko = DB::table('lokasi_toko')->get();
+        $toko = DB::table('lokasi_toko')->where('barcode', $id_toko)->get();
 
         return response()->json($toko);
     }
