@@ -64,7 +64,7 @@ codeReader.listVideoInputDevices()
             codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
                 if (result) {
 
-                    const id_toko = result.text;
+                    var id_toko = result.text;
                     var token = $('meta[name="csrf-token"]').attr('content');
                     var url = '/req-data-toko';
 
