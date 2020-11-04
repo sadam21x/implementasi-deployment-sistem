@@ -145,7 +145,7 @@ function showSalesPosition (position) {
 
 function hitungJarakSalesDanToko () {
 
-    var R = 6371; // Radius of the earth in km
+    var R = 6371000; // Radius of the earth in m
     var dLat = deg2rad(sales_latitude - toko_latitude);
     var dLon = deg2rad(sales_longitude - toko_longitude);
 
@@ -156,7 +156,7 @@ function hitungJarakSalesDanToko () {
         ;
     
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    var d = R * c; // Distance in km
+    var d = R * c; // Distance in m
 
     $('#result').append(d);
 
