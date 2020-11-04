@@ -1,0 +1,25 @@
+body, html {
+    margin: 0;
+}
+
+.container {
+    position: relative;
+}
+
+.container > * {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.container > img {
+    width: 200px;
+    margin-top: 5px;
+}
+
+.container > .nama-toko {
+    font-size: 20pt;
+    margin-top: 150px;
+}

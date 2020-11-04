@@ -51,6 +51,14 @@
                     <span>Kunjungan Toko</span>
                 </a>
             </li>
+            <li>
+                <a href="">
+                    <span class="nav-link-icon">
+                        <i class="fas fa-book-open"></i>
+                    </span>
+                    <span>User Manual</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

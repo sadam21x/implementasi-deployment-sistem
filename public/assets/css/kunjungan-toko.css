@@ -113,6 +113,10 @@ table td {
     height: max-content !important;
 }
 
+.hasil-scan-container > p {
+    font-size: 1em !important;
+}
+
 @media only screen and (max-width: 600px) {
 
     table {

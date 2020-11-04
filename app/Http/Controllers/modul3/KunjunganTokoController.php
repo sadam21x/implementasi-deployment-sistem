@@ -5,6 +5,7 @@ namespace App\Http\Controllers\modul3;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class KunjunganTokoController extends Controller
 {
@@ -41,5 +42,27 @@ class KunjunganTokoController extends Controller
         ]);
 
         return redirect('/kunjungan-toko');
+    }
+
+    public function req_data_toko()
+    {
+        $id_toko =  $_POST['id'];
+
+        $toko = DB::table('lokasi_toko')->get();
+
+        return response()->json($toko);
+    }
+
+    public function cetak_barcode(Request $request)
+    {
+        $id_toko = $request->id_toko;
+        $nama_toko = DB::table('lokasi_toko')->where('barcode', $id_toko)->value('nama_toko');
+
+        $pdf = PDF::loadView('modul3/barcode-toko', compact(
+            'id_toko',
+            'nama_toko'
+        ));
+
+        return $pdf->stream();
     }
 }

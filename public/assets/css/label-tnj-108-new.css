@@ -1,0 +1,32 @@
+@page {
+    size: 21cm 29.7cm;
+    margin: 0;
+}
+
+body {
+    padding-top: 0.5cm;
+    padding-bottom: 0.5cm;
+}
+
+.container {
+    width: 107.716535433pt;
+    margin: 0.1cm;
+    height: 51.023622047pt;
+    border: 1px solid black;
+    display: inline-block;
+}
+
+.container > * {
+    /* margin-left: 50%; */
+    /* margin-right: auto; */
+}
+
+.container > img {
+    margin-top: 8px;
+    margin-left: 8%;
+}
+
+.container > .nama-barang {
+    margin-top: 1px;
+    margin-left: 32%;
+}

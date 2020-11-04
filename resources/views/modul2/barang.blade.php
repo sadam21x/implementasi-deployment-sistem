@@ -37,7 +37,7 @@
                                         <td>{{ $barang->id_barang }}</td>
                                         <td>{{ $barang->nama }}</td>
                                         <td>
-                                            <form action="{{ url('/cetak-label-tnj-108') }}" method="post">
+                                            {{-- <form action="{{ url('/cetak-label-tnj-108') }}" method="post">
                                                 @csrf
                                                 
                                                 <input type="hidden" name="input_id_barang" value="{{ $barang->id_barang }}">
@@ -45,7 +45,12 @@
                                                     <i class="fas fa-file-pdf mr-2"></i>
                                                     CETAK BARCODE
                                                 </button>
-                                            </form>
+                                            </form> --}}
+
+                                            <button type="button" class="btn btn-sm btn-youtube" data-toggle="modal" data-target="#modal-konfirmasi-cetak-{{ $barang->id_barang }}">
+                                                <i class="fas fa-file-pdf mr-2"></i>
+                                                CETAK BARCODE
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -60,6 +65,53 @@
 
 </div>
 <!-- ./ Content -->
+
+{{-- Start Konfirmasi Cetak Barcode Modal --}}
+@foreach ($barang2 as $barang2)
+<div class="modal fade" id="modal-konfirmasi-cetak-{{ $barang2->id_barang }}" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <h5 class="modal-title">Konfirmasi Cetak Barcode</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times-circle text-danger"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="container">
+
+                    <form action="{{ url('/cetak-label-tnj-108') }}" method="post">
+                        @csrf
+
+                        <input type="hidden" name="id_barang" value="{{ $barang2->id_barang }}">
+                        
+                        <div class="my-b form-group">
+                            <label>Nama Barang: </label>
+                            <h6>{{ $barang2->nama }}</h6>
+                        </div>
+
+                        <div class="my-3 form-group">
+                            <label>Jumlah Halaman</label>
+                            <input type="number" name="jumlah_halaman" min="1" class="form-control num-without-style">
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-sm btn-youtube">
+                                <i class="fas fa-file-pdf mr-2"></i>
+                                CETAK BARCODE
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End Konfirmasi Cetak Barcode Modal --}}
+@endforeach
+
 @endsection
 
 @section('extra-script')

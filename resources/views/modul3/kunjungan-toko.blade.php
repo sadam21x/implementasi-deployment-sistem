@@ -54,10 +54,17 @@
                                             <i class="fas fa-info-circle mr-2"></i>
                                             Detail
                                         </button>
-                                        <button class="btn btn-sm btn-google">
-                                            <i class="fas fa-print mr-2"></i>
-                                            Cetak Barcode
-                                        </button>
+
+                                        <form action="{{ url('/kunjungan-toko/cetak-barcode') }}" method="POST" class="d-inline">
+                                            @csrf
+
+                                            <input type="hidden" name="id_toko" value="{{ $toko1->barcode }}">
+
+                                            <button type="submit" class="btn btn-sm btn-google">
+                                                <i class="fas fa-print mr-2"></i>
+                                                Cetak Barcode
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -75,7 +82,7 @@
 <!-- ./ Content -->
 
 {{-- Start Tambah Toko Modal --}}
-<div class="modal fade" id="modal-tambah-toko" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-tambah-toko" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -130,7 +137,7 @@
 {{-- End of Tambah Toko Modal --}}
 
 {{-- Start Submit Kunjungan Modal --}}
-<div class="modal fade" id="modal-submit-kunjungan" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modal-submit-kunjungan" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -163,6 +170,15 @@
                     <h5>Hasil:</h5>
                     <div class="hasil-scan-container">
                         <p id="result"></p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-dark btn-geolocation" onclick="getSalesLocation()">
+                            GET MY LOCATION
+                        </button>
+                        <button type="submit" id="submit-kunjungan-btn" class="btn btn-sm btn-primary disabled">
+                            SUBMIT
+                        </button>
                     </div>
                 </div>
                 
@@ -223,7 +239,9 @@
 
 @section('extra-script')
     <script src="{{ asset('/assets/datatable/datatables.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert@2.1.2/dist/sweetalert.min.js" integrity="sha256-KsRuvuRtUVvobe66OFtOQfjP8WA2SzYsmm4VPfMnxms=" crossorigin="anonymous"></script>
     <script src="http://maps.googleapis.com/maps/api/js"></script>
     <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
+    {{-- <script src="{{ asset('/assets/js/zxing.js') }}"></script> --}}
     <script src="{{ asset('/assets/js/kunjungan-toko.js') }}"></script>
 @endsection

@@ -14,7 +14,8 @@ class BarangController extends Controller
         $barang = DB::table('barang')->get();
         $barang2 = $barang;
         return view('modul2/barang', compact([
-            'barang'
+            'barang',
+            'barang2'
         ]));
     }
 
@@ -36,6 +37,23 @@ class BarangController extends Controller
         
         $pdf->setPaper($paper_size);
 
+        return $pdf->stream();
+    }
+
+    public function cetak_barcode2(Request $request)
+    {
+        // dd($request->all());
+
+        $id_barang = $request->id_barang;
+        $nama_barang = DB::table('barang')->where('id_barang', $id_barang)->value('nama');
+        $jumlah_halaman = $request->jumlah_halaman;
+
+        $pdf = PDF::loadView('modul2/label-tnj-108-new', compact(
+                    'id_barang',
+                    'nama_barang',
+                    'jumlah_halaman'
+                ));
+        
         return $pdf->stream();
     }
 }
