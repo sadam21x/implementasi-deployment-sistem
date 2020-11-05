@@ -21,7 +21,6 @@ class BarangController extends Controller
 
     public function cetak_barcode(Request $request)
     {
-        // dd($request);
 
         $id_barang = $request->input_id_barang;
         $nama_barang = DB::table('barang')->where('id_barang', $id_barang)->value('nama');
