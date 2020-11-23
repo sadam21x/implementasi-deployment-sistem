@@ -38,7 +38,9 @@
                                      class="rounded-circle"
                                      alt="avatar">
                             </figure>
-                            <span class="ml-2 d-sm-inline d-none">Sadam</span>
+                            <span class="ml-2 d-sm-inline d-none">
+                                {{ Auth::user()->name }}
+                            </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-big">
                             <div class="text-center py-4">
@@ -46,18 +48,29 @@
                                     <img src="{{ asset('/assets/img/avatar.png') }}"
                                          class="rounded-circle" alt="image">
                                 </figure>
-                                <h5 class="text-center">Sadam</h5>
-                                <div class="mb-3 small text-center text-muted">WEB DEVELOPER</div>
+                                <h5 class="text-center">
+                                    {{ Auth::user()->name }}
+                                </h5>
+                                <div class="mb-3 small text-center text-muted">
+                                    {{ Auth::user()->email }}
+                                </div>
                             </div>
                             <div class="list-group">
                                 <a href="https://github.com/sadam21x/implementasi-deployment-sistem" class="list-group-item" target="_blank">
                                     <i class="fab fa-github mr-1"></i>
-                                    GitHub
+                                    GitHub Repository
                                 </a>
-                                {{-- <a href="" class="list-group-item text-danger">
+                                <a href="{{ route('logout') }}" class="list-group-item text-danger"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        
                                    <i class="fas fa-sign-out-alt mr-1"></i>
                                    Logout
-                                </a> --}}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </div>
                         </div>
                     </li>

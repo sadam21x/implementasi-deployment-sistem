@@ -9,6 +9,11 @@ use PDF;
 
 class KunjunganTokoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $toko = DB::table('lokasi_toko')->get();
