@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="{{ asset('/assets/gogi/vendors/gogi-bundle.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('/assets/gogi/assets/css/gogi-app.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('/assets/css/custom-global.css') }}" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.12.5/dist/sweetalert2.min.css" integrity="sha256-g63UuGJzNKJaeNzy1f7N4V59R3+DZamET2Fg0cXAGDQ=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.12.5/dist/sweetalert2.all.min.js" integrity="sha256-vT8KVe2aOKsyiBKdiRX86DMsBQJnFvw3d4EEp/KRhUE=" crossorigin="anonymous"></script>
 
     {{-- Extra CSS --}}
     @yield('extra-css')
@@ -56,7 +58,7 @@
                 @yield('content')
 
 
-                @include('layouts/modul1/session')
+                {{-- @include('layouts/modul1/session') --}}
 
                 {{-- Footer --}}
                 @include('layouts/footer')

@@ -9,6 +9,43 @@
 <!-- Content -->
 <div class="content ">
 
+    {{-- Alert --}}
+    @if (session('status_code'))
+        @if (session('status_code') == 1)
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sukses',
+                    text: 'Data berhasil diinput',
+                    // footer: '<a href>Why do I have this issue?</a>'
+                });
+            </script>
+        @elseif (session('status_code') == 0)
+            <script>
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Duplikasi Data',
+                    text: '<div>'+
+                                '<p>Data berikut tidak dapat diinput karena data sudah ada di database</p>'+
+                                '<ul>'
+                                '@for ( $i = 0; $i < count($error_data); $i++ )'+
+                                    '<li>'+
+                                        '<p>{{ $error_data[$i][0] }}'+
+                                        '<p>{{ $error_data[$i][1] }}'+
+                                        '<p>{{ $error_data[$i][2] }}'+
+                                        '<p>{{ $error_data[$i][3] }}'+
+                                    '</li>'+
+                                '@endfor'+
+                                '</ul>'+
+                            '</div>' 
+                                
+                    // footer: '<a href>Why do I have this issue?</a>'
+                });
+            </script>
+        @endif
+    @endif
+    {{-- Alert --}}
+
     <div class="page-header">
         <h4>Customer</h4>
         <hr>
@@ -38,7 +75,7 @@
                                         <td>{{ $customer->nama }}</td>
                                         <td>
                                             {{ $customer->alamat }},
-                                            @php
+                                            {{-- @php
                                                 $kelurahan = DB::table('kelurahan')->where('id_kelurahan', $customer->id_kelurahan)->value('nama_kelurahan');
                                                 $id_kecamatan = DB::table('kelurahan')->where('id_kelurahan', $customer->id_kelurahan)->value('id_kecamatan');
                                                 $kecamatan = DB::table('kecamatan')->where('id_kecamatan', $id_kecamatan)->value('nama_kecamatan');
@@ -47,7 +84,7 @@
                                                 $id_provinsi = DB::table('kota')->where('id_kota', $id_kota)->value('id_provinsi');
                                                 $provinsi = DB::table('provinsi')->where('id_provinsi', $id_provinsi)->value('nama_provinsi');
                                                 echo $kelurahan . ', ' . $kecamatan . ', ' . $kota . ', ' . $provinsi;
-                                            @endphp
+                                            @endphp --}}
                                         </td>
                                         <td>
                                             <button class="btn btn-sm btn-linkedin mr-1" data-toggle="modal" data-target="#modal-detail-customer-{{ $customer->id_customer }}">

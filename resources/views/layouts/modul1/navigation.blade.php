@@ -25,6 +25,9 @@
                     <li>
                         <a href="{{ url('/customer/tambah-2') }}">Tambah Customer 2</a>
                     </li>
+                    <li>
+                        <a href="{{ url('/customer/excel') }}">Import from Excel</a>
+                    </li>
                 </ul>
             </li>
             <li>
