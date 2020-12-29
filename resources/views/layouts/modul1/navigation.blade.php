@@ -55,6 +55,23 @@
                 </a>
             </li>
             <li>
+                <a href="#" id="scoreboard-menu">
+                    <span class="nav-link-icon">
+                        <i class="fas fa-th-large"></i>
+                    </span>
+                    <span>Scoreboard</span>
+                </a>
+
+                <ul>
+                    <li>
+                        <a href="{{ url('/scoreboard/controller') }}">Controller</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/scoreboard/client') }}" target="_blank">Client</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
                 <a href="https://drive.idcloudhost.com/s/Q2bGLmyMj3akXMX">
                     <span class="nav-link-icon">
                         <i class="fas fa-book-open"></i>

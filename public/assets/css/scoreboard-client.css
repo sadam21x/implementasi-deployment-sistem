@@ -1,0 +1,64 @@
+body {
+    background-color: cornflowerblue;
+}
+
+body, html {
+    margin: 0;
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+}
+
+.timer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.timer-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    width: 400px;
+    height: 200px;
+}
+
+.timer-box h1 {
+    color: red;
+    font-size: 70pt;
+}
+
+.score-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.score-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    width: 400px;
+    height: 200px;
+    margin-left: 10px;
+    margin-right: 10px;
+    flex-direction: column;
+}
+
+.score-box h1 {
+    color: yellow;
+    font-size: 70pt;
+}
+
+.score-box h6 {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}

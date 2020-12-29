@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(KecamatanSeeder::class);
         $this->call(KelurahanSeeder::class);
         $this->call(BarangSeeder::class);
+        $this->call(ScoreBoardSeeder::class);
     }
 }

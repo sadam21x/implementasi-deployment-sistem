@@ -169,6 +169,7 @@ return [
         Milon\Barcode\BarcodeServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        
 
         /*
          * Application Service Providers...
