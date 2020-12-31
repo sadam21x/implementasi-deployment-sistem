@@ -211,7 +211,8 @@ class ScoreBoardController extends Controller
     {
         if($request->has('start')){
             DB::table('scoreboard')->where('id_scoreboard', 1)->update([
-                'timer' => $request->duration
+                'timer' => $request->duration,
+                'timer_state' => 'running'
             ]);
 
             $message = 'Countdown start';
@@ -219,10 +220,27 @@ class ScoreBoardController extends Controller
 
         } elseif($request->has('stop')){
             DB::table('scoreboard')->where('id_scoreboard', 1)->update([
-                'timer' => 0
+                'timer' => 0,
+                'timer_state' => 'stopped'
             ]);
 
             $message = 'Countdown stop';
+            return response()->json($message);
+
+        } elseif ($request->has('pause')) {
+            DB::table('scoreboard')->where('id_scoreboard', 1)->update([
+                'timer_state' => 'paused'
+            ]);
+
+            $message = 'Countdown paused';
+            return response()->json($message);
+
+        } elseif ($request->has('resume')) {
+            DB::table('scoreboard')->where('id_scoreboard', 1)->update([
+                'timer_state' => 'running'
+            ]);
+
+            $message = 'Countdown resumed';
             return response()->json($message);
         }
     }

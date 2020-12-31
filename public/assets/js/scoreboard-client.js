@@ -1,8 +1,9 @@
 stop_audio();
+clear_timer();
 
 var is_playing_audio = false;
 var is_timer_on = false;
-var is_timer_pause = false;
+var is_timer_paused = false;
 
 if(typeof (EventSource) !== "undefined") {
     source.onmessage = function(event){
@@ -30,6 +31,14 @@ if(typeof (EventSource) !== "undefined") {
 
                 start_timer(duration, display);
             }
+        } else {
+            $('#timer').html('00:00');
+        }
+
+        if(data[0].timer_state == 'paused'){
+            is_timer_paused = true;
+        } else if(data[0].timer_state == 'running'){
+            is_timer_paused = false;
         }
 
     };
@@ -40,34 +49,22 @@ if(typeof (EventSource) !== "undefined") {
 function start_timer(duration, display){
     var timer = duration, minutes, seconds;
     var x = setInterval(function () {
-                minutes = parseInt(timer / 60, 10);
-                seconds = parseInt(timer % 60, 10);
+                if (is_timer_paused == false){
+                    minutes = parseInt(timer / 60, 10);
+                    seconds = parseInt(timer % 60, 10);
 
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                display.textContent = minutes + ":" + seconds;
+                    display.textContent = minutes + ":" + seconds;
+
+                }
 
                 if (--timer < 0){
                     clearInterval(x);
                     document.getElementById("bell_ring_01.mp3").play();
 
-                    var token = $('meta[name="csrf-token"]').attr('content');
-
-                    $.ajax({
-                        type: 'POST',
-                        headers: {
-                            'X-CSRF-TOKEN': token
-                        },
-                        url: '/scoreboard/controller/sse/timer',
-                        data: {
-                            stop: 'stop'
-                        },
-                        dataType: 'json',
-                        success: function(data){
-                            console.log(data);
-                        }
-                    });
+                    clear_timer();
 
                     is_timer_on = false;
                 }
@@ -93,4 +90,24 @@ function stop_audio(){
             console.log(data);
         }
     });
+}
+
+function clear_timer() {
+    var token = $('meta[name="csrf-token"]').attr('content');
+
+    $.ajax({
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': token
+        },
+        url: '/scoreboard/controller/sse/timer',
+        data: {
+            stop: 'stop'
+        },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+        }
+    });
+
 }

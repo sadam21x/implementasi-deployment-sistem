@@ -16,18 +16,18 @@
     <div class="container">
         <div class="timer-container">
             <div class="timer-box">
-                <h1 id="timer">00:00</h1>
+                <h1 id="timer"></h1>
             </div>
         </div>
 
         <div class="score-container">
             <div class="score-box">
-                <h1 id="home_score">0</h1>
-                <h6 id="home_team">Home</h6>
+                <h1 id="home_score"></h1>
+                <h6 id="home_team"></h6>
             </div>
             <div class="score-box">
-                <h1 id="away_score">0</h1>
-                <h6 id="away_team">Away</h6>
+                <h1 id="away_score"></h1>
+                <h6 id="away_team"></h6>
             </div>
         </div>
     </div>

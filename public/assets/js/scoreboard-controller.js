@@ -9,6 +9,42 @@ if (typeof (EventSource) !== "undefined") {
         $('#away_team').html(data[0].away_team);
         $('#home_score').html(data[0].home_score);
         $('#away_score').html(data[0].away_score);
+
+        if (data[0].timer_state == 'stopped') {
+            $('#start_timer_button')
+                .prop('disabled', false)
+                .css('cursor', 'pointer');
+
+            $('#pause_timer_button, #resume_timer_button')
+                .prop('disabled', true)
+                .css('cursor', 'not-allowed');
+
+        } else if (data[0].timer_state == 'running') {
+            $('#start_timer_button')
+                .prop('disabled', true)
+                .css('cursor', 'not-allowed');
+            
+            $('#pause_timer_button')
+                .prop('disabled', false)
+                .css('cursor', 'pointer');
+
+            $('#resume_timer_button')
+                .prop('disabled', true)
+                .css('cursor', 'not-allowed');
+
+        } else if (data[0].timer_state == 'paused') {
+            $('#start_timer_button')
+                .prop('disabled', true)
+                .css('cursor', 'not-allowed');
+            
+            $('#pause_timer_button')
+                .prop('disabled', true)
+                .css('cursor', 'not-allowed');
+
+            $('#resume_timer_button')
+                .prop('disabled', false)
+                .css('cursor', 'pointer');
+        }
     };
 } else {
     alert('Sorry, your browser does not support server sent event');
@@ -272,6 +308,7 @@ $('#start_timer_button').on('click', function(){
         dataType: 'json',
         success: function(data){
             console.log(data);
+
             Swal.fire({
                 icon: 'success',
                 title: 'Timer started'
@@ -280,8 +317,8 @@ $('#start_timer_button').on('click', function(){
     });
 });
 
-// stop timer
-$('#stop_timer_button').on('click', function(){
+// pause timer
+$('#pause_timer_button').on('click', function(){
     var token = $('meta[name="csrf-token"]').attr('content');
 
     $.ajax({
@@ -291,11 +328,41 @@ $('#stop_timer_button').on('click', function(){
         },
         url: '/scoreboard/controller/sse/timer',
         data: {
-            stop: 'stop'
+            pause: 'pause'
         },
         dataType: 'json',
         success: function(data){
             console.log(data);
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Timer paused'
+            });
+        }
+    });
+});
+
+// resume timer
+$('#resume_timer_button').on('click', function(){
+    var token = $('meta[name="csrf-token"]').attr('content');
+
+    $.ajax({
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': token
+        },
+        url: '/scoreboard/controller/sse/timer',
+        data: {
+            resume: 'resume'
+        },
+        dataType: 'json',
+        success: function(data){
+            console.log(data);
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Timer resumed'
+            });
         }
     });
 });

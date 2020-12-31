@@ -119,12 +119,12 @@
                     <input type="number" id="input_timer" min="0" class="form-control" placeholder="timer (seconds)">
                 </div>
                 <button id="start_timer_button" class="btn btn-linkedin mx-1 my-1">
-                    START/RESTART
+                    START
                 </button>
-                <button id="stop_timer_button" class="btn btn-google mx-1 my-1">
-                    STOP
+                <button id="pause_timer_button" class="btn btn-google mx-1 my-1">
+                    PAUSE
                 </button>
-                <button class="btn btn-warning mx-1 my-1">
+                <button id="resume_timer_button" class="btn btn-warning mx-1 my-1">
                     RESUME
                 </button>
             </div>
