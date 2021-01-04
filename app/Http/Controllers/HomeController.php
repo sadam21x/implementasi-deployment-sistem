@@ -25,4 +25,11 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function user_manual()
+    {
+        return response()->file(
+            public_path('storage/documents/dokumentasi_dan_user_manual.pdf')
+        );
+    }
 }

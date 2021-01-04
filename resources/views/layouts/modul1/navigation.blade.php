@@ -72,7 +72,7 @@
                 </ul>
             </li>
             <li>
-                <a href="https://drive.idcloudhost.com/s/Q2bGLmyMj3akXMX">
+                <a href="{{ url('/user-manual') }}">
                     <span class="nav-link-icon">
                         <i class="fas fa-book-open"></i>
                     </span>

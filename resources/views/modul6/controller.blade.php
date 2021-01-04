@@ -121,10 +121,10 @@
                 <button id="start_timer_button" class="btn btn-linkedin mx-1 my-1">
                     START
                 </button>
-                <button id="pause_timer_button" class="btn btn-google mx-1 my-1">
+                <button id="pause_timer_button" class="btn btn-warning mx-1 my-1">
                     PAUSE
                 </button>
-                <button id="resume_timer_button" class="btn btn-warning mx-1 my-1">
+                <button id="resume_timer_button" class="btn btn-secondary mx-1 my-1">
                     RESUME
                 </button>
             </div>
@@ -137,15 +137,22 @@
                 <div class="form-group">
                     <label class="mr-3">Select Song</label>
                     <select id="select_audio" class="form-control">
-                        <option value="breatha_josh_pan.mp3">Breatha - Josh Pan</option>
-                        <option value="cat_shat_in_the_box_josh_pan.mp3">Cat Shat in The Box - Josh Pan</option>
-                        <option value="june_bobby_richards.mp3">June - Bobby Richards</option>
-                        <option value="phrase_prant_josh_pan.mp3">Phrase Prant - Josh Pan</option>
+                        <option value="warriyo_mortals.mp3">Warriyo - Mortals</option>
+                        <option value="janji_heroes_tonight.mp3">Janji - Heroes Tonight</option>
+                        <option value="cartoon_why_we_lose.mp3">Cartoon - Why We Lose</option>
                     </select>
                 </div>
                 <button id="play_audio_button" class="btn btn-linkedin mx-1 my-1">
                     <i class="fas fa-play-circle mr-2"></i>
                     PLAY
+                </button>
+                <button id="pause_audio_button" class="btn btn-warning mx-1 my-1">
+                    <i class="fas fa-pause-circle mr-2"></i>
+                    PAUSE
+                </button>
+                <button id="stop_audio_button" class="btn btn-youtube mx-1 my-1">
+                    <i class="fas fa-stop-circle mr-2"></i>
+                    STOP
                 </button>
             </div>
 

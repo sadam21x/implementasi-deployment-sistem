@@ -1,9 +1,10 @@
 stop_audio();
 clear_timer();
 
-var is_playing_audio = false;
+var audio_state = 'stopped';
 var is_timer_on = false;
 var is_timer_paused = false;
+var audio_player = new Audio();
 
 if(typeof (EventSource) !== "undefined") {
     source.onmessage = function(event){
@@ -14,13 +15,20 @@ if(typeof (EventSource) !== "undefined") {
         $('#home_score').html(data[0].home_score);
         $('#away_score').html(data[0].away_score);
 
-        if(data[0].audio != ''){
-            if(is_playing_audio == false){
-                is_playing_audio = true;
+        if(data[0].audio_state == 'played'){
+            if(audio_state == 'stopped' || audio_state == 'paused'){
                 document.getElementById(data[0].audio).play();
+                audio_state = 'played';
             }
-        } else {
-            is_playing_audio = false;
+
+        } else if(data[0].audio_state == 'paused'){
+            document.getElementById(data[0].audio).pause();
+            audio_state = 'paused';
+
+        } else if(data[0].audio_state == 'stop_trigger'){
+            document.getElementById(data[0].audio).pause();
+            document.getElementById(data[0].audio).currentTime = 0;
+            stop_audio();
         }
 
         if(data[0].timer != 0){
@@ -73,7 +81,7 @@ function start_timer(duration, display){
 }
 
 function stop_audio(){
-    is_playing_audio = false;
+    audio_state = 'stopped';
     var token = $('meta[name="csrf-token"]').attr('content');
 
     $.ajax({
@@ -87,7 +95,7 @@ function stop_audio(){
         },
         dataType: 'json',
         success: function(data){
-            console.log(data);
+            // console.log(data);
         }
     });
 }
@@ -106,7 +114,7 @@ function clear_timer() {
         },
         dataType: 'json',
         success: function (data) {
-            console.log(data);
+            // console.log(data);
         }
     });
 

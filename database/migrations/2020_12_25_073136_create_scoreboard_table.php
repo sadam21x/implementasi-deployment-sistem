@@ -20,6 +20,7 @@ class CreateScoreboardTable extends Migration
             $table->integer('home_score')->nullable()->default(0);
             $table->integer('away_score')->nullable()->default(0);
             $table->string('audio')->nullable()->default('');
+            $table->string('audio_state')->nullable()->default('stopped');
             $table->integer('timer')->nullable()->default(0);
             $table->string('timer_state')->nullable()->default('stopped');
         });

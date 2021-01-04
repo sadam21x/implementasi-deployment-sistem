@@ -45,6 +45,47 @@ if (typeof (EventSource) !== "undefined") {
                 .prop('disabled', false)
                 .css('cursor', 'pointer');
         }
+
+        if (data[0].audio_state == 'stopped'){
+            $('#play_audio_button')
+                .prop('disabled', false)
+                .css('cursor', 'pointer');
+            
+            $('#pause_audio_button')
+                .prop('disabled', true)
+                .css('cursor', 'not-allowed');
+            
+            $('#stop_audio_button')
+                .prop('disabled', true)
+                .css('cursor', 'not-allowed');
+
+        } else if (data[0].audio_state == 'played'){
+            $('#play_audio_button')
+                .prop('disabled', true)
+                .css('cursor', 'not-allowed');
+            
+            $('#pause_audio_button')
+                .prop('disabled', false)
+                .css('cursor', 'pointer');
+            
+            $('#stop_audio_button')
+                .prop('disabled', false)
+                .css('cursor', 'pointer');
+
+        } else if (data[0].audio_state == 'paused'){
+            $('#play_audio_button')
+                .prop('disabled', false)
+                .css('cursor', 'pointer');
+            
+            $('#pause_audio_button')
+                .prop('disabled', true)
+                .css('cursor', 'not-allowed');
+            
+            $('#stop_audio_button')
+                .prop('disabled', false)
+                .css('cursor', 'pointer');
+
+        }
     };
 } else {
     alert('Sorry, your browser does not support server sent event');
@@ -286,6 +327,61 @@ $('#play_audio_button').on('click', function(){
         dataType: 'json',
         success: function(data){
             console.log(data);
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Audio played'
+            });
+        }
+    });
+});
+
+// pause audio
+$('#pause_audio_button').on('click', function(){
+    var token = $('meta[name="csrf-token"]').attr('content');
+
+    $.ajax({
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': token
+        },
+        url: '/scoreboard/controller/sse/audio',
+        data: {
+            paused: 'paused'
+        },
+        dataType: 'json',
+        success: function(data){
+            console.log(data);
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'Audio paused'
+            });
+        }
+    });
+});
+
+// stop audio
+$('#stop_audio_button').on('click', function(){
+    var token = $('meta[name="csrf-token"]').attr('content');
+
+    $.ajax({
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': token
+        },
+        url: '/scoreboard/controller/sse/audio',
+        data: {
+            stop_trigger: 'stop_trigger'
+        },
+        dataType: 'json',
+        success: function(data){
+            console.log(data);
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'Audio stopped'
+            });
         }
     });
 });

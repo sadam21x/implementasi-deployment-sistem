@@ -21,6 +21,26 @@ class ScoreBoardController extends Controller
         return view('modul6.client', compact('audio'));
     }
 
+    public function sse()
+    {
+
+        $data = DB::table('scoreboard')->where('id_scoreboard', 1)->get()->toArray();
+
+        $response = new StreamedResponse();
+
+        $response->setCallback(function () use ($data){
+            echo 'data: ' . json_encode($data) . "\n\n";
+            ob_end_flush();
+            flush();
+            usleep(1000000);
+        });
+                                         
+        $response->headers->set('Content-Type', 'text/event-stream');
+        $response->headers->set('X-Accel-Buffering', 'no');
+        $response->headers->set('Cache-Control', 'no-cache');
+        $response->send();
+    }
+
     public function sse_reset(){
         DB::table('scoreboard')->where('id_scoreboard', 1)->update([
             'home_team' => 'Home',
@@ -33,7 +53,7 @@ class ScoreBoardController extends Controller
         return response()->json($message);
     }
 
-    public function sse_team_server(Request $request){
+    public function sse_team(Request $request){
         $input_home_team = $request->input_home_team;
         $input_away_team = $request->input_away_team;
 
@@ -44,26 +64,6 @@ class ScoreBoardController extends Controller
 
         $message = "Team updated successfully";
         return response()->json($message);
-    }
-
-    public function sse_team()
-    {
-
-        $data = DB::table('scoreboard')->where('id_scoreboard', 1)->get()->toArray();
-
-        $response = new StreamedResponse();
-
-        $response->setCallback(function () use ($data){
-            echo 'data: ' . json_encode($data) . "\n\n";
-            ob_end_flush();
-            flush();
-            usleep(2000);
-        });
-                                         
-        $response->headers->set('Content-Type', 'text/event-stream');
-        $response->headers->set('X-Accel-Buffering', 'no');
-        $response->headers->set('Cache-Control', 'no-cache');
-        $response->send();
     }
 
     public function sse_home_score(Request $request)
@@ -191,7 +191,8 @@ class ScoreBoardController extends Controller
             $audio = $request->audio;
 
             DB::table('scoreboard')->where('id_scoreboard', 1)->update([
-                'audio' => $audio
+                'audio' => $audio,
+                'audio_state' => 'played'
             ]);
             
             $message = 'Audio played successfully';
@@ -199,10 +200,27 @@ class ScoreBoardController extends Controller
 
         } elseif($request->has('stop')){
             DB::table('scoreboard')->where('id_scoreboard', 1)->update([
-                'audio' => ''
+                'audio' => '',
+                'audio_state' => 'stopped'
             ]);
             
             $message = 'Audio stopped';
+            return response()->json($message);
+
+        } elseif($request->has('paused')){
+            DB::table('scoreboard')->where('id_scoreboard', 1)->update([
+                'audio_state' => 'paused'
+            ]);
+            
+            $message = 'Audio paused';
+            return response()->json($message);
+
+        } elseif($request->has('stop_trigger')){
+            DB::table('scoreboard')->where('id_scoreboard', 1)->update([
+                'audio_state' => 'stop_trigger'
+            ]);
+            
+            $message = 'Audio stop trigger';
             return response()->json($message);
         }
     }
